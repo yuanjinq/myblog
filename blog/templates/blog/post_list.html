@@ -1,14 +1,48 @@
-{% if latest_post_list %}
-	{% for post in latest_post_list %}
-	<div>
-		<h2><a href="{% url 'blog:detail' post.id %}">{{ post.title }}</a></h2>
-		<p>{{ post.text|linebreaksbr }}</p>
-	  <p>Posted by
-		<a href="#">Yuan Jinqiang</a>
-		on {{ post.published_date }}</p>
-	</div>
-	<hr>
-	{% endfor %}
-{% else %}
-	<p>No posts are available.</p>
-{% endif %}
+{% extends "blog/base.html" %}
+{% load static %}
+<!-- 写入 base.html 中定义的 title -->
+{% block title %}
+    Post List
+{% endblock title %}
+
+<!-- 写入 base.html 中定义的 content -->
+{% block content %}
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url({%static 'blog/img/home-bg.jpg'%})">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Post List</h1>
+            <span class="subheading">What's up?</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        {% if latest_post_list %}
+            {% for post in latest_post_list %}
+            <div class="post-preview">
+                <h2 class="post-title"><a href="{% url 'blog:detail' post.id %}">{{ post.title }}</a></h2>
+                <p>{{ post.text|linebreaksbr }}</p>
+              <p class="post-meta">Posted by
+                <a href="#">{{post.author}}</a>
+                on {{ post.published_date }}</p>
+            </div>
+            <hr>
+            {% endfor %}
+        {% else %}
+            <p>No posts are available.</p>
+        {% endif %}
+        
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}

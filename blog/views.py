@@ -41,3 +41,8 @@ class PostListView(generic.ListView):
         return Post.objects.filter(
             published_date__lte=timezone.now()
         ).order_by('-published_date')   
+    
+def about_view(request):
+    return render(request, 'blog/about.html')
+def contact_view(request):
+    return render(request, 'blog/contact.html')
