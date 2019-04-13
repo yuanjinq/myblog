@@ -25,7 +25,7 @@ SECRET_KEY = 'e5r+x#sn0xz*_ex^a=9z(2q#t5#+gum@8o&+**xc+4o3iey!2x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['3.17.132.167','localhost','127.0.0.1']
+ALLOWED_HOSTS = ['3.17.132.167','yuanjq.me','localhost','127.0.0.1']
 
 
 # Application definition
