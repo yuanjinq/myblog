@@ -1,14 +1,14 @@
-<html>
-  <head>
-    <title>CP Blog</title>
-  </head>
-  <body>
-    {% for post in posts %}
-      <div>
-        <p>published: {{ post.published_date }}</p>
-        <h1><a href="">{{ post.title }}</a></h1>
-        <p>{{ post.text|linebreaksbr }}</p>
-      </div>
-    {% endfor %}
-  </body>
-</html>
+{% if latest_post_list %}
+	{% for post in latest_post_list %}
+	<div>
+		<h2><a href="{% url 'blog:detail' post.id %}">{{ post.title }}</a></h2>
+		<p>{{ post.text|linebreaksbr }}</p>
+	  <p>Posted by
+		<a href="#">Yuan Jinqiang</a>
+		on {{ post.published_date }}</p>
+	</div>
+	<hr>
+	{% endfor %}
+{% else %}
+	<p>No posts are available.</p>
+{% endif %}
