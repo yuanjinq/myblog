@@ -31,6 +31,8 @@ ALLOWED_HOSTS = ['3.17.132.167','yuanjq.me','localhost','127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'comment',
+    'userprofile',
     'ckeditor',
     'blog.apps.BlogConfig',
     'polls.apps.PollsConfig',

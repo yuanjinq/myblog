@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.utils import timezone
 from .models import Post
+from comment.models import Comment
 from django.views import generic
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -23,6 +24,14 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Post
     template_name = 'blog/detail.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        id=context['post'].id;
+        post=Post.objects.get(id=id)
+        comments=Comment.objects.filter(post=id)
+        context['comments'] = comments
+        return context
+    
     def get_queryset(self):
         """
         Excludes any questions that aren't published yet.
