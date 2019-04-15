@@ -42,6 +42,7 @@ def user_register(request):
             new_user.set_password(user_register_form.cleaned_data['password'])
             new_user.save()
             # 保存好数据后立即登录并返回博客列表页面
+            setattr(new_user, 'backend', 'django.contrib.auth.backends.RemoteUserBackend')
             login(request, new_user)
             return redirect("blog:index")
         else:

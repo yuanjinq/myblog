@@ -52,7 +52,7 @@
 						<div class="form-group">
 							<label for="body">
 								<strong>
-									我也要发言：
+									Comment：
 								</strong>
 							</label>
 							<div>
@@ -61,14 +61,14 @@
 							</div>
 						</div>
 						<!-- 提交按钮 -->
-						<button type="submit" class="btn btn-primary ">发送</button>                    
+						<button type="submit" class="btn btn-primary ">Send</button>                    
 					</form>
 				</div>
 				<br>
 			{% else %}
 				<br>
 				<h5 class="row justify-content-center">
-					请<a href="{% url 'userprofile:login' %}">登录</a>后回复
+					Please&nbsp;<a href="{% url 'userprofile:login' %}">Login</a>&nbsp;to make comments.
 				</h5>
 				<br>
 			{% endif %}
@@ -76,20 +76,20 @@
 
 
 			<!-- 显示评论 -->
-			<h4>共有{{ comments.count }}条评论</h4>
+			<h4>Comments:{{ comments.count }}</h4>
 			<div>
 				{% for comment in comments %}
 					<hr>
 					<p>
 						<strong style="color: pink">
 							{{ comment.user }}
-						</strong> 于 
+						</strong> on 
 						<span style="color: green">
 							{{ comment.created|date:"Y-m-d H:i:s" }}
-						</span> 时说：
+						</span> ：
 					</p>
-					<pre style="font-family: inherit; font-size: 1em;">
-		{{ comment.body }}</pre>
+					<div>{{ comment.body|safe }}</div>
+					
 				{% endfor %}
 			</div>
 		</div>
