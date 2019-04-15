@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['3.17.132.167','yuanjq.me','localhost','127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'social_django',
     'comment',
     'userprofile',
     'ckeditor',
@@ -63,6 +64,8 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -139,6 +142,16 @@ CKEDITOR_CONFIGS = {
 }
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.weibo.WeiboOAuth2',
+    'social_core.backends.qq.QQOAuth2',
+    'social_core.backends.weixin.WeixinOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_WEIBO_KEY = '2989951225'
+SOCIAL_AUTH_WEIBO_SECRET = '94fa9fbd06be7d8616d02dad7b8e7332'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
 
 LANGUAGE_CODE = 'en-us'
 

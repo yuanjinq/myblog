@@ -21,6 +21,7 @@
 
   <!-- Custom styles for this template -->
   <link href="{% static 'blog/css/clean-blog.min.css' %}" rel="stylesheet">
+  <link href="{% static 'blog/css/mystyle.css' %}" rel="stylesheet">
 
 </head>
 
@@ -38,6 +39,11 @@
 
   <!-- Custom scripts for this template -->
   <script src="{% static 'blog/js/clean-blog.min.js' %}"></script>
+  {% block script %}
+	  <script>
+		$(".django-ckeditor-widget").removeAttr('style');
+	  </script>
+  {% endblock script %}
 
 </body>
 

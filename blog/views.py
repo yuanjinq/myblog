@@ -5,6 +5,7 @@ from comment.models import Comment
 from django.views import generic
 from django.shortcuts import render
 from django.http import HttpResponse
+from comment.forms import CommentForm
 
 # Create your views here.
 class IndexView(generic.ListView):
@@ -28,8 +29,10 @@ class DetailView(generic.DetailView):
         context = super().get_context_data(**kwargs)
         id=context['post'].id;
         post=Post.objects.get(id=id)
+        comment_form = CommentForm()
         comments=Comment.objects.filter(post=id)
         context['comments'] = comments
+        context['comment_form']=comment_form
         return context
     
     def get_queryset(self):

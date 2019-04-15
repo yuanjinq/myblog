@@ -1,0 +1,8 @@
+#mainNav .navbar-nav > li.nav-item > .dropdown-menu-right { 
+    right: 0; 
+    left: auto; 
+}
+#mainNav .navbar-nav > li.nav-item > .text-right { 
+    right: 0; 
+    left: auto; 
+}

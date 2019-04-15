@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('userprofile/', include('userprofile.urls', namespace='userprofile')),
     path('comment/', include('comment.urls', namespace='comment')),
+    path('social/', include('social_django.urls', namespace='social'))
 ]
