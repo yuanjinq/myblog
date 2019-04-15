@@ -1,0 +1,11 @@
+.dropdown-item {
+  display: block;
+  width: 100%;
+  clear: both;
+  font-size: 12px;
+  font-weight: 800;
+  color: #343a40;
+  text-align: inherit;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
