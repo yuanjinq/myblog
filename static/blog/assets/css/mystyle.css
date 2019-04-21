@@ -1,0 +1,16 @@
+@media screen and (max-width: 991px) {
+	.sidebar-collapse .navbar .dropdown.show .dropdown-menu,
+  .sidebar-collapse .navbar .dropdown .dropdown-menu {
+    background-color: transparent;
+    border: 0;
+    transition: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    width: auto;
+    margin: 0 1rem;
+    margin-bottom: 15px;
+    padding-top: 0;
+    height: auto;
+    overflow-y: auto;
+  }
+}
