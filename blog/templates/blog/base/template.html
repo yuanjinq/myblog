@@ -1,0 +1,25 @@
+{% extends "blog/base/base.html" %}
+{% load static %}
+<!-- ?? base.html ???? title -->
+{% block title %}
+    Jinqiang's Website
+{% endblock title %}
+<!-- ?? base.html ???? content -->
+{% block content %}
+  <!-- Page Header -->
+<body class="index-page sidebar-collapse">
+
+	{% include 'blog/base/header.html' %}
+	<div class="wrapper">
+		<div class="page-header clear-filter " filter-color="orange">
+		</div>
+		{% include 'blog/base/footer.html' %}
+	</div>
+	{% include 'blog/base/js.html' %}
+	
+	<script>
+
+	</script>
+</body>
+
+{% endblock content %}

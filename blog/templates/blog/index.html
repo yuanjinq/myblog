@@ -1,52 +1,164 @@
-{% extends "blog/base.html" %}
+{% extends "blog/base/base.html" %}
 {% load static %}
 <!-- 写入 base.html 中定义的 title -->
 {% block title %}
-    Home
+    Jinqiang's Website
 {% endblock title %}
-
 <!-- 写入 base.html 中定义的 content -->
 {% block content %}
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url({%static 'blog/img/home-bg.jpg'%})">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="site-heading">
-            <h1>Jinqiang's Blog</h1>
-            <span class="subheading">A Useless Blog</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+<body class="index-page sidebar-collapse">
 
-  <!-- Main Content -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        {% if latest_post_list %}
-            {% for post in latest_post_list %}
-            <div class="post-preview">
-                <h2 class="post-title"><a href="{% url 'blog:detail' post.id %}">{{ post.title }}</a></h2>
-                <p>{{ post.text|safe }}</p>
-              <p class="post-meta">Posted by
-                <a href="#">{{post.author}}</a>
-                on {{ post.published_date }}</p>
-            </div>
-            <hr>
-            {% endfor %}
-        {% else %}
-            <p>No posts are available.</p>
-        {% endif %}
-        
-        <!-- Pager -->
-        <div class="clearfix">
-          <a class="btn btn-primary float-right" href="{% url 'blog:post_list'%}">Older Posts &rarr;</a>
-        </div>
-      </div>
-    </div>
-  </div>
+	{% include 'blog/base/header_index.html' %}
+	<div class="wrapper">
+		<div class="page-header clear-filter " filter-color="orange">
+		  <div class="page-header-image" data-parallax="true" style="background-image:url({%static 'blog/assets/img/header.jpg'%});">
+		  </div>
+		  
+		  <div class="container">
+			<div class="content-center brand">
+			  <div class="photo-container" style="margin-bottom: 20px;">
+				  <img src="{%static 'blog/assets/img/rescue.jpg'%}" alt="Thumbnail Image" class="rounded-circle img-raised" style="width:20%">
+			  </div>
+			  <!--img src="{%static 'blog/assets/img/rescue.jpg'%}" alt="Raised Image" class="rounded img-raised"-->
+			  <h1 class="h1-seo">RESCUE</h1>
+			  <h3>Hi, this is Jinqiang's Website.</h3>
+			</div>
+		  </div>
+		</div>
+		<div class="section section-about" id="#about-section">
+		  <div class="container text-center">
+			<h2 class="title">About me</h2>
+			<h5 class="description">Hi, I'm Yuan Jinqiang.</h5>
+			<div class="row">
+			  <div class="col-12 ml-auto mr-auto">
+				<h3 class="title text-center">My Portfolio</h3>
+				<div class="nav-align-center">
+				  <ul class="nav nav-pills nav-pills-primary nav-pills-just-icons" role="tablist">
+					<li class="nav-item">
+					  <a class="nav-link" data-toggle="tab" href="#profile" role="tablist">
+						<i class="now-ui-icons design_image"></i>
+					  </a>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link active" data-toggle="tab" href="#home" role="tablist">
+						<i class="now-ui-icons location_world"></i>
+					  </a>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link" data-toggle="tab" href="#messages" role="tablist">
+						<i class="now-ui-icons sport_user-run"></i>
+					  </a>
+					</li>
+				  </ul>
+				</div>
+			  </div>
+			  <!-- Tab panes -->
+			  <div class="tab-content gallery">
+				<div class="tab-pane active" id="home" role="tabpanel">
+				  <div class="col-md-10 ml-auto mr-auto">
+					<div class="row collections">
+					  <div class="col-md-6">
+						<img src="../assets/img/bg1.jpg" alt="" class="img-raised">
+						<img src="../assets/img/bg3.jpg" alt="" class="img-raised">
+					  </div>
+					  <div class="col-md-6">
+						<img src="../assets/img/bg8.jpg" alt="" class="img-raised">
+						<img src="../assets/img/bg7.jpg" alt="" class="img-raised">
+					  </div>
+					</div>
+				  </div>
+				</div>
+				<div class="tab-pane" id="profile" role="tabpanel">
+				  <div class="col-md-10 ml-auto mr-auto">
+					<div class="row collections">
+					  <div class="col-md-6">
+						<img src="../assets/img/bg6.jpg" class="img-raised">
+						<img src="../assets/img/bg11.jpg" alt="" class="img-raised">
+					  </div>
+					  <div class="col-md-6">
+						<img src="../assets/img/bg7.jpg" alt="" class="img-raised">
+						<img src="../assets/img/bg8.jpg" alt="" class="img-raised">
+					  </div>
+					</div>
+				  </div>
+				</div>
+				<div class="tab-pane" id="messages" role="tabpanel">
+				  <div class="col-md-10 ml-auto mr-auto">
+					<div class="row collections">
+					  <div class="col-md-6">
+						<img src="../assets/img/bg3.jpg" alt="" class="img-raised">
+						<img src="../assets/img/bg8.jpg" alt="" class="img-raised">
+					  </div>
+					  <div class="col-md-6">
+						<img src="../assets/img/bg7.jpg" alt="" class="img-raised">
+						<img src="../assets/img/bg6.jpg" class="img-raised">
+					  </div>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		  <!-- Main Content -->
+		 <div class="section section-posts" id="#posts-section">
+		  <div class="container">
+			<h2 class="title text-center">Posts</h2>
+			<h5 class="description"></h5>
+			<div class="row">
+			  <div class="col-lg-8 col-md-10 mx-auto">
+				{% if latest_post_list %}
+					{% for post in latest_post_list %}
+					<div class="post-preview">
+						<h3 class="title"><a href="{% url 'blog:detail' post.id %}">{{ post.title }}</a></h3>
+						<p>{{ post.text|safe }}</p>
+					  <p class="post-meta">Posted by
+						<a href="#">{{post.author}}</a>
+						on {{ post.published_date }}</p>
+					</div>
+					<hr>
+					{% endfor %}
+				{% else %}
+					<p>No posts are available.</p>
+				{% endif %}
+				
+				<!-- Pager -->
+				<div class="clearfix">
+				  <a class="btn btn-primary btn-round float-right" href="{% url 'blog:post_list'%}">Older Posts &rarr;</a>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		{% include 'blog/base/footer.html' %}
+	</div>
+	{% include 'blog/base/js.html' %}
+	<script>
+	$(document).ready(function() {
+	  // the body of this function is in assets/js/now-ui-kit.js
+	  nowuiKit.initSliders();
+	});
+
+	function scrollToAbout() {
+
+	  if ($('.section-about').length != 0) {
+		$("html, body").animate({
+		  scrollTop: $('.section-about').offset().top
+		}, 1000);
+	  }
+	}
+	function scrollToPosts() {
+
+	  if ($('.section-posts').length != 0) {
+		$("html, body").animate({
+		  scrollTop: $('.section-posts').offset().top
+		}, 1000);
+	  }
+	}
+	</script>
+</body>
+  
+  
 
 {% endblock content %}

@@ -1,41 +1,52 @@
+{% extends "blog/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Yuan Jinqiang's Blog</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-  <script src="{% static 'jquery/jquery-3.4.0.js' %}"></script>
-  <script src="{% static 'popper/popper-1.14.4.js' %}"></script>
-  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-</head>
-<body>
+<!-- 写入 base.html 中定义的 title -->
+{% block title %}
+    Home
+{% endblock title %}
 
-<div class="jumbotron text-center">
-  <h1>Welcome to my blog</h1>
-  <p>Hello!</p> 
-</div>
- 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-      <h3>第一列</h3>
-      <p>菜鸟教程</p>
-      <p>学的不仅是技术，更是梦想！！！</p>
+<!-- 写入 base.html 中定义的 content -->
+{% block content %}
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url({%static 'blog/img/home-bg.jpg'%})">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Jinqiang's Blog</h1>
+            <span class="subheading">A Useless Blog</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-sm-4">
-      <h3>第二列</h3>
-      <p>菜鸟教程..</p>
-      <p>学的不仅是技术，更是梦想！！！</p>
-    </div>
-    <div class="col-sm-4">
-      <h3>第三列</h3> 
-      <p>菜鸟教程..</p>
-      <p>学的不仅是技术，更是梦想！！！</p>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        {% if latest_post_list %}
+            {% for post in latest_post_list %}
+            <div class="post-preview">
+                <h2 class="post-title"><a href="{% url 'blog:detail' post.id %}">{{ post.title }}</a></h2>
+                <p>{{ post.text|safe }}</p>
+              <p class="post-meta">Posted by
+                <a href="#">{{post.author}}</a>
+                on {{ post.published_date }}</p>
+            </div>
+            <hr>
+            {% endfor %}
+        {% else %}
+            <p>No posts are available.</p>
+        {% endif %}
+        
+        <!-- Pager -->
+        <div class="clearfix">
+          <a class="btn btn-primary float-right" href="{% url 'blog:post_list'%}">Older Posts &rarr;</a>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-</body>
-</html>
+{% endblock content %}

@@ -1,98 +1,102 @@
-{% extends "blog/base.html" %}
+{% extends "blog/base/base.html" %}
 {% load static %}
 <!-- 写入 base.html 中定义的 title -->
 {% block title %}
-    details
+    Jinqiang's Website
 {% endblock title %}
-
 <!-- 写入 base.html 中定义的 content -->
 {% block content %}
-<!-- Page Header -->
-  <header class="masthead" style="background-image: url({%static 'blog/img/post-bg.jpg'%})">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="post-heading">
-            <h1>{{ post.title }}</h1>
-            <h2 class="subheading">{{post.subtitle}}</h2>
-            <span class="meta">Posted by
-              {{post.author}}
-              on {{post.published_date}}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+  <!-- Page Header -->
+<body class="index-page sidebar-collapse">
 
-  <!-- Main Content -->
-    <!-- Post Content -->
-  <article>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <p>{{ post.text|safe }}</p>
-        </div>
-      </div>
-    </div>
-  </article>
-  
-  
-  <hr>
-  <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-			<!-- 显示评论 -->
-			<h4>{{ comments.count }} Comments</h4>
-			<div>
-				{% for comment in comments %}
-					<p>
-						<strong style="color: pink">
-							{{ comment.user }}
-						</strong> on 
-						<span style="color: green">
-							{{ comment.created|date:"Y-m-d H:i:s" }}
-						</span> ：
-					</p>
-					<div>{{ comment.body|safe }}</div>
-					<hr>
-				{% endfor %}
-			</div>
-			{% if user.is_authenticated %}
-				<div>
-					<form 
-						action="{% url 'comment:post_comment' post.id %}" 
-						method="POST"
-					>
-					{% csrf_token %}
-						<div class="form-group">
-							<label for="body">
-								<strong>
-									Add a Public Comment：
-								</strong>
-							</label>
-							<div>
-								{{ comment_form.media }}
-								{{ comment_form.body }}
-							</div>
-						</div>
-						<!-- 提交按钮 -->
-						<button type="submit" class="btn btn-primary ">Send</button>                    
-					</form>
-				</div>
-				<br>
-			{% else %}
-				<br>
-				<h5 class="row justify-content-center">
-					Please&nbsp;<a href="{% url 'userprofile:login' %}"><U>Login</U></a>&nbsp;to make comments.
-				</h5>
-				<br>
-			{% endif %}
+	{% include 'blog/base/header.html' %}
+	<div class="wrapper">
+	    <div class="page-header clear-filter page-header-small" filter-color="orange">
+		  <div class="page-header-image" data-parallax="true" style="background-image:url({%static 'blog/assets/img/bg6.jpg'%});">
+		  </div>
+		  
+		  <div class="container">
+			<div class="post-heading">
+				<h1>{{ post.title }}</h1>
+				<h2 class="subheading">{{post.subtitle}}</h2>
+				<span class="meta">Posted by
+				  {{post.author}}
+				  on {{post.published_date}}</span>
+            </div>
+		  </div>
 		</div>
-   </div>
-  </div>
-</div>
-
+		<div class="section">
+		  <article>
+			<div class="container">
+			  <div class="row">
+				<div class="col-lg-8 col-md-10 mx-auto">
+				  <p>{{ post.text|safe }}</p>
+				</div>
+			  </div>
+			</div>
+		  </article>
+		    <hr>
+			<div class="container">
+				  <div class="row">
+					<div class="col-lg-8 col-md-10 mx-auto">
+						<!-- 显示评论 -->
+						<h4>{{ comments.count }} Comments</h4>
+						<div>
+							{% for comment in comments %}
+								<p>
+									<strong style="color: pink">
+										{{ comment.user }}
+									</strong> on 
+									<span style="color: green">
+										{{ comment.created|date:"Y-m-d H:i:s" }}
+									</span> ：
+								</p>
+								<div>{{ comment.body|safe }}</div>
+								<hr>
+							{% endfor %}
+						</div>
+						{% if user.is_authenticated %}
+							<div>
+								<form 
+									action="{% url 'comment:post_comment' post.id %}" 
+									method="POST"
+								>
+								{% csrf_token %}
+									<div class="form-group">
+										<label for="body">
+											<strong>
+												Add a Public Comment：
+											</strong>
+										</label>
+										<div>
+											{{ comment_form.media }}
+											{{ comment_form.body }}
+										</div>
+									</div>
+									<!-- 提交按钮 -->
+									<button type="submit" class="btn btn-primary ">Send</button>                    
+								</form>
+							</div>
+							<br>
+						{% else %}
+							<br>
+							<h5 class="row justify-content-center">
+								Please&nbsp;<a href="{% url 'userprofile:login' %}"><U>Login</U></a>&nbsp;to make comments.
+							</h5>
+							<br>
+						{% endif %}
+					</div>
+			   </div>
+			</div>
+		</div>
+		{% include 'blog/base/footer.html' %}
+		
+	</div>
+	{% include 'blog/base/js.html' %}
+	<script>
+	$(".django-ckeditor-widget").removeAttr('style');
+	</script>
+</body>
 
 {% endblock content %}
 

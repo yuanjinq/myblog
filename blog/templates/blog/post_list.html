@@ -1,48 +1,68 @@
-{% extends "blog/base.html" %}
+{% extends "blog/base/base.html" %}
 {% load static %}
 <!-- 写入 base.html 中定义的 title -->
 {% block title %}
-    Post List
+    Jinqiang's Website
 {% endblock title %}
-
 <!-- 写入 base.html 中定义的 content -->
 {% block content %}
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url({%static 'blog/img/home-bg.jpg'%})">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="site-heading">
-            <h1>Post List</h1>
-            <span class="subheading">What's up?</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+<body class="index-page sidebar-collapse">
 
-  <!-- Main Content -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        {% if latest_post_list %}
-            {% for post in latest_post_list %}
-            <div class="post-preview">
-                <h2 class="post-title"><a href="{% url 'blog:detail' post.id %}">{{ post.title }}</a></h2>
-                <p>{{ post.text|safe }}</p>
-              <p class="post-meta">Posted by
-                <a href="#">{{post.author}}</a>
-                on {{ post.published_date }}</p>
-            </div>
-            <hr>
-            {% endfor %}
-        {% else %}
-            <p>No posts are available.</p>
-        {% endif %}
-        
-      </div>
-    </div>
-  </div>
+	{% include 'blog/base/header.html' %}
+	<div class="wrapper">
+	    <div class="page-header clear-filter page-header-small" filter-color="orange">
+		  <div class="page-header-image" data-parallax="true" style="background-image:url({%static 'blog/assets/img/bg5.jpg'%});">
+		  </div>
+		  
+		  <div class="container">
+			<h1 class="title">Post List</h2>
+			<p class="category">What's up?</p>
+		  </div>
+		</div>
+		<div class="section">
+		  <div class="container">
+			<div class="row">
+			  <div class="col-lg-8 col-md-10 mx-auto">
+				{% if latest_post_list %}
+					{% for post in latest_post_list %}
+					<div class="post-preview">
+						<h2 class="title"><a href="{% url 'blog:detail' post.id %}">{{ post.title }}</a></h2>
+						<p>{{ post.text|safe }}</p>
+					  <p class="post-meta">Posted by
+						<a href="#">{{post.author}}</a>
+						on {{ post.published_date }}</p>
+					</div>
+					<hr>
+					{% endfor %}
+				{% else %}
+					<p>No posts are available.</p>
+				{% endif %}
+				
+			  </div>
+			</div>
+		  </div>
+		</div>
+		{% include 'blog/base/footer.html' %}
+	</div>
+	{% include 'blog/base/js.html' %}
+	<script>
+	$(document).ready(function() {
+	  // the body of this function is in assets/js/now-ui-kit.js
+	  nowuiKit.initSliders();
+	});
+
+	function scrollToDownload() {
+
+	  if ($('.section-download').length != 0) {
+		$("html, body").animate({
+		  scrollTop: $('.section-download').offset().top
+		}, 1000);
+	  }
+	}
+	</script>
+</body>
+  
+  
 
 {% endblock content %}
